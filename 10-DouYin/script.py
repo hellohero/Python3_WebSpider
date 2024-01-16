@@ -35,7 +35,7 @@ def response(flow):
             # 视频链接
             videourl = aweme_list[i].get('video').get('play_addr').get('url_list')[0]
             # 保存视频
-            res = requests.get(videourl, stream=True)
+            res = requests.get(videourl, stream=True, timeout=60)
             # 规范文件命名
             _str = ['\\', '/', ':', '*', '?', '"', '<', '>', '|', '.', '..', '？']
             for _ in _str:

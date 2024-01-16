@@ -10,7 +10,7 @@ import os
 # 全英雄列表请求链接
 herolist_url = 'https://pvp.qq.com/web201605/js/herolist.json'
 # 获取数据
-response = requests.get(herolist_url).json()
+response = requests.get(herolist_url, timeout=60).json(timeout=60)
 
 # 根据英雄的皮肤链接，分析并下载英雄的皮肤
 save_dir = "E:\Python\Spider\Ex\\01-Spider_Glory_of_Kings\hero_list\\"  # 指定下载位置
@@ -29,7 +29,7 @@ for i in range(len(response)):
         save_file_name = save_dir + str(hero_num) + '-' + hero_name + '-' + skin_name + '.jpg'
         skin_url = 'http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/{}/{}-bigskin-{}.jpg'.format(hero_num, hero_num, str(cnt+1))
         # 获取图片的位数据(二进制流数据)
-        response_skin_content = requests.get(skin_url).content
+        response_skin_content = requests.get(skin_url, timeout=60).content
         # 保存图片
         with open(save_file_name, 'wb') as f:
             f.write(response_skin_content)
