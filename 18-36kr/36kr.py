@@ -8,13 +8,12 @@ Created at 21:04 at March 12,2019
 
 from tqdm import tqdm
 from colorama import init, Fore
-from icon.word import show
 from fake_useragent import UserAgent
 from requests.exceptions import RequestException
-import requests
 import pymysql
 import time
 import re
+from security import safe_requests
 
 init(autoreset=True)
 
@@ -43,7 +42,7 @@ def get_one_page(page):
     }
     # 获取网页源代码
     try:
-        response = requests.get(url, headers=headers)
+        response = safe_requests.get(url, headers=headers)
         if response.status_code == 200:
             items = response.json()['data']['items']
             return items
