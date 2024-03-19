@@ -7,7 +7,7 @@
 import requests
 from pyquery import PyQuery
 from fake_useragent import UserAgent
-import random
+import secrets
 
 def get_ip_port(page):
     """
@@ -35,7 +35,7 @@ def get_ip_port(page):
             print('The status code is {},Try again! '.format(response.status_code))
 
     # 检测有效ip代理,随机返回使用
-    return random.choices(test_agent(agents))[0]
+    return secrets.SystemRandom().choices(test_agent(agents))[0]
 
 def test_agent(agents):
     """
@@ -53,4 +53,4 @@ def test_agent(agents):
     return agents
 
 if __name__ == '__main__':
-    print(get_ip_port(random.randint(2, 4)))
+    print(get_ip_port(secrets.SystemRandom().randint(2, 4)))

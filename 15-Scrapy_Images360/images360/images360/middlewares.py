@@ -5,8 +5,8 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-import random
 import logging
+import secrets
 
 class UAMiddleware(object):
     def __init__(self):
@@ -21,7 +21,7 @@ class UAMiddleware(object):
         ]
 
     def process_request(self, request, spider):
-        user_agent = random.choices(self.ua_list)
+        user_agent = secrets.SystemRandom().choices(self.ua_list)
         request.headers['User-Agent'] = user_agent
         # 通过打印日志查看随机User-Agent
         # logging.info(request.url)
