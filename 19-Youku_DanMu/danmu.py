@@ -44,7 +44,7 @@ def get_data(mat):
     """
     # 获取弹幕
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
         print(response)
         if response.status_code == 200:
             html = response.text

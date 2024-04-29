@@ -30,7 +30,7 @@ class Chaojiying_Client(object):
         }
         params.update(self.base_params)
         files = {'userfile': ('ccc.jpg', im)}
-        r = requests.post('http://upload.chaojiying.net/Upload/Processing.php', data=params, files=files, headers=self.headers)
+        r = requests.post('http://upload.chaojiying.net/Upload/Processing.php', data=params, files=files, headers=self.headers, timeout=60)
         return r.json()
 
     def ReportError(self, im_id):
@@ -41,5 +41,5 @@ class Chaojiying_Client(object):
             'id': im_id,
         }
         params.update(self.base_params)
-        r = requests.post('http://upload.chaojiying.net/Upload/ReportError.php', data=params, headers=self.headers)
+        r = requests.post('http://upload.chaojiying.net/Upload/ReportError.php', data=params, headers=self.headers, timeout=60)
         return r.json()

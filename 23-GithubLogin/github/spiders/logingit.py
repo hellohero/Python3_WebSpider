@@ -48,7 +48,7 @@ class LogingitSpider(scrapy.Spider):
         """
         avatar = response.css('#user-links > li:nth-child(3) > details > summary > img::attr(src)').extract_first()
         if avatar:
-            content = requests.get(url=avatar.split('?')[0]).content
+            content = requests.get(url=avatar.split('?')[0], timeout=60).content
             with open('./utils/acatar.jpg', 'wb') as f:
                 f.write(content)
             print('Successfully Login!')

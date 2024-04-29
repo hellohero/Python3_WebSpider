@@ -13,7 +13,7 @@ def get_share_info(shareid):
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"
     }
     url = "https://www.iesdouyin.com/share/user/%s" % shareid
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, timeout=60)
     html = etree.HTML(r.text)
     user_info = {}
     # 昵称
