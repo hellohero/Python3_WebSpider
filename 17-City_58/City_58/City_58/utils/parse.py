@@ -10,7 +10,7 @@ from fontTools.ttLib import TTFont
 from io import BytesIO
 from xdaili import Xdaili
 from scrapy import Selector
-import requests
+from security import safe_requests
 
 def parse_xiaoqu(response):
     """
@@ -116,5 +116,5 @@ if __name__ == '__main__':
     # 请求头
     headers = {"Proxy-Authorization": auth}
     # 发送请求,接收响应
-    result = get_chuzu_house_info(requests.get(url, headers=headers, proxies=proxy, verify=False, allow_redirects=False))
+    result = get_chuzu_house_info(safe_requests.get(url, headers=headers, proxies=proxy, verify=False, allow_redirects=False))
     print(result)

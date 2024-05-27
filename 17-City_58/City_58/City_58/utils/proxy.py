@@ -6,8 +6,8 @@
 
 import requests
 from pyquery import PyQuery
-from fake_useragent import UserAgent
 import random
+from security import safe_requests
 
 def get_ip_port(page):
     """
@@ -21,7 +21,7 @@ def get_ip_port(page):
     agents = list()
     for i in range(page):
         url = 'http://www.89ip.cn/index_{}.html'.format(i+1)    # 格式化请求链接
-        response = requests.get(url)          # 获取网页内容
+        response = safe_requests.get(url)          # 获取网页内容
 
         if response.status_code == 200:
             jpy = PyQuery(response.text)

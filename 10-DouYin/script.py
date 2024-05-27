@@ -8,9 +8,9 @@ Updated at 17:57 at March 19,2019
 
 from mitmproxy import ctx
 import json
-import requests
 import time
 import os
+from security import safe_requests
 
 def response(flow):
     """
@@ -35,7 +35,7 @@ def response(flow):
             # 视频链接
             videourl = aweme_list[i].get('video').get('play_addr').get('url_list')[0]
             # 保存视频
-            res = requests.get(videourl, stream=True)
+            res = safe_requests.get(videourl, stream=True)
             # 规范文件命名
             _str = ['\\', '/', ':', '*', '?', '"', '<', '>', '|', '.', '..', '？']
             for _ in _str:
