@@ -21,7 +21,7 @@ def get_ip_port(page):
     agents = list()
     for i in range(page):
         url = 'http://www.89ip.cn/index_{}.html'.format(i+1)    # 格式化请求链接
-        response = requests.get(url)          # 获取网页内容
+        response = requests.get(url, timeout=60)          # 获取网页内容
 
         if response.status_code == 200:
             jpy = PyQuery(response.text)
@@ -46,7 +46,7 @@ def test_agent(agents):
     agents_copy = agents
     for agent in agents_copy:
         try:
-            res = requests.get('https://cd.58.com/', proxy=agent)
+            res = requests.get('https://cd.58.com/', proxy=agent, timeout=60)
         except Exception as e:
             agents.remove(agent)
             continue

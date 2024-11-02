@@ -116,5 +116,5 @@ if __name__ == '__main__':
     # 请求头
     headers = {"Proxy-Authorization": auth}
     # 发送请求,接收响应
-    result = get_chuzu_house_info(requests.get(url, headers=headers, proxies=proxy, verify=False, allow_redirects=False))
+    result = get_chuzu_house_info(requests.get(url, headers=headers, proxies=proxy, verify=False, allow_redirects=False, timeout=60))
     print(result)

@@ -28,7 +28,7 @@ def response(flow):
             # 取URL中取值唯一的部分作为文件名称
             video_name = flow.request.url.split('/')[3]
             # 获取视频的二进制内容
-            content = requests.get(flow.request.url, stream=True).content
+            content = requests.get(flow.request.url, stream=True, timeout=60).content
             # 判断文件路径是否存在
             save_dir = './video'
             if not os.path.exists(save_dir):
