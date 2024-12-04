@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
 
-import requests
 import json
 import time
 from fake_useragent import UserAgent
 import logging
+from security import safe_requests
 
 def get_ip_port(url):
     """
@@ -13,7 +13,7 @@ def get_ip_port(url):
     :return: 有效IP
     """
     time.sleep(1)
-    response = requests.get(url)
+    response = safe_requests.get(url)
     response = json.loads(response.text)
     result = response['RESULT']
     agent = ''
