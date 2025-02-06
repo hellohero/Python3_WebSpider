@@ -43,7 +43,7 @@ def get_one_page(page):
     }
     # 获取网页源代码
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
         if response.status_code == 200:
             items = response.json()['data']['items']
             return items
