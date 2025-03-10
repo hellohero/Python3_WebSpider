@@ -3,11 +3,10 @@
 """
 轻量级ip代理池, 以89代理网站为例, ip成活率较低, 可做测试使用.
 """
-
-import requests
 from pyquery import PyQuery
 from fake_useragent import UserAgent
 import random
+from security import safe_requests
 
 def get_ip_port(page):
     """
@@ -21,7 +20,7 @@ def get_ip_port(page):
     agents = list()
     for i in range(page):
         url = 'http://www.89ip.cn/index_{}.html'.format(i+1)    # 格式化请求链接
-        response = requests.get(url)          # 获取网页内容
+        response = safe_requests.get(url)          # 获取网页内容
 
         if response.status_code == 200:
             jpy = PyQuery(response.text)
@@ -46,7 +45,7 @@ def test_agent(agents):
     agents_copy = agents
     for agent in agents_copy:
         try:
-            res = requests.get('https://cd.58.com/', proxy=agent)
+            res = safe_requests.get('https://cd.58.com/', proxy=agent)
         except Exception as e:
             agents.remove(agent)
             continue

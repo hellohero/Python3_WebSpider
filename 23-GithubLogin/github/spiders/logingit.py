@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import requests
+from security import safe_requests
 
 class LogingitSpider(scrapy.Spider):
     name = 'logingit'
@@ -48,7 +48,7 @@ class LogingitSpider(scrapy.Spider):
         """
         avatar = response.css('#user-links > li:nth-child(3) > details > summary > img::attr(src)').extract_first()
         if avatar:
-            content = requests.get(url=avatar.split('?')[0]).content
+            content = safe_requests.get(url=avatar.split('?')[0]).content
             with open('./utils/acatar.jpg', 'wb') as f:
                 f.write(content)
             print('Successfully Login!')
