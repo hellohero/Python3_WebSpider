@@ -13,7 +13,7 @@ def get_ip_port(url):
     :return: 有效IP
     """
     time.sleep(1)
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
     response = json.loads(response.text)
     result = response['RESULT']
     agent = ''
