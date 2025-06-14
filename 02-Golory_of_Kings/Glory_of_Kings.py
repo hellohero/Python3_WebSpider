@@ -6,6 +6,7 @@ Created at 21:27 at Sep 17,2018
 
 import requests
 import os
+from security import safe_requests
 
 # 全英雄列表请求链接
 herolist_url = 'https://pvp.qq.com/web201605/js/herolist.json'
@@ -29,7 +30,7 @@ for i in range(len(response)):
         save_file_name = save_dir + str(hero_num) + '-' + hero_name + '-' + skin_name + '.jpg'
         skin_url = 'http://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/{}/{}-bigskin-{}.jpg'.format(hero_num, hero_num, str(cnt+1))
         # 获取图片的位数据(二进制流数据)
-        response_skin_content = requests.get(skin_url).content
+        response_skin_content = safe_requests.get(skin_url).content
         # 保存图片
         with open(save_file_name, 'wb') as f:
             f.write(response_skin_content)

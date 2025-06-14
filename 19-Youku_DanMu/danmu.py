@@ -9,10 +9,10 @@ Created at 22:08 at March 13,2019
 from fake_useragent import UserAgent
 from requests.exceptions import RequestException
 from tqdm import tqdm
-import requests
 import time
 import os
 import re
+from security import safe_requests
 
 def get_data(mat):
     """
@@ -44,7 +44,7 @@ def get_data(mat):
     """
     # 获取弹幕
     try:
-        response = requests.get(url, headers=headers)
+        response = safe_requests.get(url, headers=headers)
         print(response)
         if response.status_code == 200:
             html = response.text
